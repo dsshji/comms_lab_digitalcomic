@@ -1,0 +1,524 @@
+/* ============================================================
+   BASE
+   ============================================================ */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #0a0a0a;
+    font-family: Georgia, serif;
+    user-select: none;
+}
+
+/* ============================================================
+   PANELS — contain so nothing is cropped
+   ============================================================ */
+.panel {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.55s ease;
+    transform-origin: center center;
+    /* overridden by JS for zoom */
+}
+
+/* During zoom-enter, JS adds this class to override transition */
+.panel.zooming {
+    transition: transform 0.9s ease-in, opacity 0.35s ease 0.55s !important;
+}
+
+.panel.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* The background image: contain = full image always visible */
+.panel-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
+    pointer-events: none;
+}
+
+.panel-label {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    background: rgba(12, 18, 30, 0.88);
+    color: #e8dfc8;
+    font-size: clamp(10px, 1.3vw, 14px);
+    letter-spacing: 0.14em;
+    padding: 8px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    z-index: 2;
+}
+
+/* ============================================================
+   HOTSPOTS — positioned relative to the RENDERED image area.
+   JS will compute the image rect and apply px positions.
+   ============================================================ */
+.hotspot {
+    position: absolute;
+    cursor: pointer;
+}
+
+.hotspot-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    /* drop-shadow traces SVG opaque pixels exactly */
+    filter:
+        drop-shadow(0 0 5px rgba(180, 210, 255, 0.8)) drop-shadow(0 0 14px rgba(140, 180, 255, 0.5));
+    animation: hotspot-glow 2.4s ease-in-out infinite;
+}
+
+@keyframes hotspot-glow {
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 5px rgba(180, 210, 255, 0.8)) drop-shadow(0 0 14px rgba(140, 180, 255, 0.5));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 10px rgba(180, 210, 255, 1)) drop-shadow(0 0 26px rgba(140, 180, 255, 0.8));
+    }
+}
+
+.hotspot:hover .hotspot-svg {
+    transform: scale(1.04);
+    transition: transform 0.2s ease;
+}
+
+/* ============================================================
+   PANEL 1 — DOOR
+   ============================================================ */
+.door-hotspot {
+    /* px positions set by JS after image renders */
+    perspective: 1200px;
+}
+
+.door-wrapper {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+    transform-origin: left center;
+    transition: transform 0.6s ease-in-out;
+}
+
+/* Glow on the door img — drop-shadow follows SVG shape */
+#door-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
+    filter:
+        drop-shadow(0 0 6px rgba(255, 205, 100, 0.85)) drop-shadow(0 0 18px rgba(255, 170, 50, 0.55));
+    animation: door-glow 2.2s ease-in-out infinite;
+}
+
+@keyframes door-glow {
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 6px rgba(255, 205, 100, 0.85)) drop-shadow(0 0 18px rgba(255, 170, 50, 0.55));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 14px rgba(255, 205, 100, 1)) drop-shadow(0 0 35px rgba(255, 170, 50, 0.85));
+    }
+}
+
+/* Glow off once clicked */
+.door-wrapper.open #door-img {
+    filter: none;
+    animation: none;
+}
+
+.door-wrapper.open {
+    transform: rotateY(50deg);
+}
+
+/* to3 door — same animation, hinge left */
+.to3-wrapper {
+    transform-origin: left center;
+}
+
+/* to3 img glow matches hotspot-glow (blue, like other panel 2 hotspots) */
+#to3-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
+    filter:
+        drop-shadow(0 0 5px rgba(180, 210, 255, 0.8)) drop-shadow(0 0 14px rgba(140, 180, 255, 0.5));
+    animation: hotspot-glow 2.4s ease-in-out infinite;
+}
+
+.to3-wrapper.open #to3-img {
+    filter: none;
+    animation: none;
+}
+
+/* ============================================================
+   SCROLL-TO-ENTER HINT
+   ============================================================ */
+.enter-hint {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    z-index: 5;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.7s ease;
+}
+
+.enter-hint.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.enter-arrow {
+    font-size: 1.6rem;
+    color: rgba(255, 220, 130, 0.9);
+    animation: bounce-up 1.8s ease-in-out infinite;
+}
+
+.enter-text {
+    font-size: clamp(9px, 1.1vw, 13px);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255, 220, 130, 0.75);
+}
+
+@keyframes bounce-up {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(7px);
+    }
+}
+
+/* ============================================================
+   PANEL 2 — BACK NAVIGATION
+   ============================================================ */
+.back-hint {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 9%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    cursor: pointer;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.6));
+    transition: background 0.25s;
+    z-index: 2;
+}
+
+.back-hint:hover {
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+}
+
+.back-arrow {
+    font-size: 1.5rem;
+    color: rgba(225, 210, 175, 0.85);
+    animation: bounce-down 1.9s ease-in-out infinite;
+}
+
+.back-text {
+    font-size: clamp(9px, 1vw, 13px);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(225, 210, 175, 0.6);
+}
+
+@keyframes bounce-down {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(7px);
+    }
+}
+
+/* ============================================================
+   DEV CONTROLS (panel 2 hotspot positioning)
+   ============================================================ */
+.dev-controls {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 999;
+    background: rgba(8, 10, 16, 0.92);
+    color: #ddd8c8;
+    padding: 14px 16px;
+    border-radius: 8px;
+    width: 270px;
+    font-family: monospace;
+    font-size: 11px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    line-height: 2;
+}
+
+.dev-controls.hidden {
+    display: none;
+}
+
+.dev-title {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #f0d080;
+}
+
+.dev-title small {
+    color: #888;
+    font-size: 10px;
+}
+
+.dev-group {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dev-label {
+    color: #a0d8a0;
+    margin-bottom: 2px;
+    font-size: 11px;
+}
+
+.dev-controls label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: space-between;
+}
+
+.dev-controls input[type=range] {
+    width: 120px;
+    accent-color: #f0d080;
+}
+
+.dev-controls .dv {
+    width: 44px;
+    text-align: right;
+    color: #f0d080;
+}
+
+.dev-output {
+    margin-top: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px;
+    border-radius: 4px;
+    color: #80d880;
+    white-space: pre;
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(4, 6, 12, 0.82);
+    backdrop-filter: blur(5px);
+}
+
+.modal-box {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0.85);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal.open .modal-box {
+    transform: scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(28, 30, 38, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ccc8bc;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.18s, transform 0.18s;
+}
+
+.modal-close:hover {
+    background: rgba(55, 58, 68, 0.95);
+    transform: rotate(90deg);
+}
+
+#modal-content img {
+    max-width: 80vw;
+    max-height: 80vh;
+    display: block;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.75);
+}
+
+/* ============================================================
+   DUST MODAL
+   ============================================================ */
+.dust-box {
+    flex-direction: column;
+    gap: 10px;
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+.dust-hint {
+    color: rgba(210, 200, 168, 0.8);
+    font-size: clamp(11px, 1.4vw, 15px);
+    letter-spacing: 0.1em;
+    font-style: italic;
+    text-align: center;
+    transition: color 0.5s;
+}
+
+.dust-wrapper {
+    position: relative;
+    line-height: 0;
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.75);
+    cursor: crosshair;
+    /* overridden by JS with data-URL once image loads */
+}
+
+#fam-clear {
+    display: block;
+    max-width: 74vw;
+    max-height: 72vh;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+#dust-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* cursor set dynamically in JS with duster.png */
+    cursor: crosshair;
+    touch-action: none;
+    transition: opacity 1.4s ease;
+}
+
+.dust-wrapper.revealed::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 235, 185, 0.14) 0%, transparent 55%);
+    pointer-events: none;
+    animation: shimmer 0.9s ease forwards;
+}
+
+@keyframes shimmer {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* ============================================================
+   ZOOM OVERLAY — for zoom-into-doorway transition
+   ============================================================ */
+.zoom-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 150;
+    background: #000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.zoom-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* ============================================================
+   FADE TRANSITION OVERLAY
+   ============================================================ */
+.fade-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: #080a0e;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.45s ease;
+}
+
+.fade-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
