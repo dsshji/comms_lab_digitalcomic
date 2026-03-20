@@ -247,7 +247,10 @@ to3Hotspot.addEventListener("click", () => {
   setTimeout(() => {
     const box = document.getElementById("modal-box");
     box.classList.add("panel3-iframe");
-    modalContent.innerHTML = `<iframe src="panel3/index.html"></iframe>`;
+    modalContent.innerHTML = `<iframe 
+  src="panel3/index.html" 
+  style="width:92vw;height:90vh;border:none;display:block;"
+></iframe>`;
     modal.classList.add("open");
   }, 650);
 });
