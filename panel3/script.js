@@ -21,6 +21,7 @@ stairsSound.loop   = true;
 stairsSound.volume = 0.6;
 
 const beepSound = new Audio('audios/beep.mp3');
+beepSound.volume = 0.2;
 const doorSound = new Audio('audios/door_open.mp3');
 
 
@@ -183,6 +184,7 @@ function unlock() {
   doorSound.currentTime = 0;
   doorSound.play().catch(() => {});
 
-  document.getElementById('fade-out').classList.add('active');
-  setTimeout(() => document.getElementById('next-page').classList.add('visible'), 600);
+  setTimeout(() => {
+    window.top.location.href = 'panel4/index.html'; //ADD PANEL 4 HERE
+  }, 800);
 }
