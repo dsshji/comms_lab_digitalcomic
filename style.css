@@ -387,6 +387,18 @@ body {
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+#modal-box.panel3-iframe {
+  width: 92vw;
+  height: 90vh;
+}
+
+#modal-box.panel3-iframe iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
 .modal.open .modal-box {
     transform: scale(1);
 }
