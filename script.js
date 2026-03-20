@@ -227,11 +227,11 @@ function closeModal() {
   modal.classList.remove("open");
   setTimeout(() => {
     modalContent.innerHTML = "";
+    document.getElementById("modal-box").classList.remove("panel3-iframe");
     to3Used = false;
     to3Wrapper.classList.remove("open");
   }, 350);
 }
-
 modalClose.addEventListener("click", closeModal);
 modalBG.addEventListener("click", closeModal);
 
@@ -245,25 +245,10 @@ to3Hotspot.addEventListener("click", () => {
   to3Wrapper.classList.add("open");
 
   setTimeout(() => {
-    const img = new Image();
-    img.onload  = () => openModal("assets/panels/panel3.png");
-    img.onerror = () => {
-      modalContent.innerHTML = `
-        <div style="
-          width:58vw;height:42vh;
-          background:linear-gradient(135deg,#0c0e14,#181b24);
-          display:flex;flex-direction:column;align-items:center;justify-content:center;
-          color:rgba(200,185,150,0.65);font-family:Georgia,serif;
-          border:1px solid rgba(255,255,255,0.05);
-          box-shadow:0 20px 80px rgba(0,0,0,0.75);gap:14px;">
-          <span style="font-size:2.6rem;opacity:0.25">…</span>
-          <span style="letter-spacing:0.22em;font-size:clamp(9px,1.2vw,13px);text-transform:uppercase">
-            panel 3 &mdash; coming soon
-          </span>
-        </div>`;
-      modal.classList.add("open");
-    };
-    img.src = "assets/panels/panel3.png";
+    const box = document.getElementById("modal-box");
+    box.classList.add("panel3-iframe");
+    modalContent.innerHTML = `<iframe src="panel3/index.html"></iframe>`;
+    modal.classList.add("open");
   }, 650);
 });
 
