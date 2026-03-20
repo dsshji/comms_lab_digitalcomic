@@ -184,6 +184,8 @@ function unlock() {
   doorSound.currentTime = 0;
   doorSound.play().catch(() => {});
 
+  document.getElementById('fade-out').classList.add('active');
+
   setTimeout(() => {
     window.top.location.href = 'panel4/index.html'; //ADD PANEL 4 HERE
   }, 800);
