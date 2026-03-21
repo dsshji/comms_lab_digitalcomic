@@ -1,0 +1,62 @@
+*{
+    margin: 0;
+}
+
+.panel{
+    width: 100vw;
+    height: 100vh;
+    background-color: black; 
+    overflow: hidden; /* hides scroll bar */
+    position: relative;
+}
+
+/* bg itself */
+.panelBg{
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* prevents imagae distortion */
+}
+
+#boxInteraction {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw; /* svg is the same size as the image, so fully fitted (or whatever) */
+    height: 100vh;
+    /*opacity: 0; /* invisible before the user hovers on it! */
+    /*transition: all 0.3s ease-in-out; */
+    pointer-events: none; /* ignores mouse */
+}
+
+#boxInteraction svg{
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* box is invisible before hover*/
+    transition: all 0.3s ease-in-out;
+}
+
+#boxInteraction svg * { /* this is for SPECIFICALLY the svg i drew, not the whole image (so it doesnt incljude the transpasrent/empty parts */
+    pointer-events: auto; /* only triggers pointer on drawn svg */
+}
+
+/* .boxImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: visiblePainted; /* ignores empty spaces on svg, transparent bg is ignored 
+} */
+
+#boxInteraction svg:hover {
+    transition: all 0.3s ease-in-out;
+    opacity: 1; /* appears when user hovers */
+}
+
+/* #boxInteraction svg, #boxInteraction img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: all;
+} */
+
+
+
