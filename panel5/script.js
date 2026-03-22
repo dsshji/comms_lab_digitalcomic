@@ -1,10 +1,22 @@
 AOS.init();
+AOS.init({ duration: 600, easing: "ease", once: false, offset: 0 });
 
 const dropZone = document.querySelector(".drop-zone");
 const finalImage = document.querySelector(".final-image");
 const heroSection = document.querySelector(".hero");
 const whiteSection = document.querySelector(".white-section");
+const backPanel4 = document.getElementById("back-panel4");
+const backPuzzle = document.getElementById("back-puzzle");
+let heartbeatSound = new Audio("assets/heartbeat-sound.mov");
+let flatlineSound = new Audio("assets/flatline-sound.mov");
 
+backPanel4.addEventListener("click", () => {
+    window.location.href = "../panel4/index.html";
+});
+
+backPuzzle.addEventListener("click", () => {
+    window.location.href = "../panel5/index.html";
+});
 
 const images = [
     "../panel5/assets/puzzle/piece1.svg",
@@ -171,21 +183,19 @@ function completePuzzle() {
 
     dropZone.style.opacity = "0";
     title.style.display = "none";
+    backPanel4.style.display = "none";
 
     setTimeout(() => {
 
         heroSection.style.display = "block";
         whiteSection.style.display = "block";
 
-        // Enable scroll
-        // document.body.style.height = "300vh";
-
-        //ait a frame before initializing GSAP
+        // a frame before initializing GSAP
         requestAnimationFrame(() => {
             initGSAP();
             ScrollTrigger.refresh();
         });
-
+        heartbeatSound.play();
     }, 700);
 }
 
@@ -204,6 +214,7 @@ function initGSAP() {
     });
 
     tl.to(background, { opacity: 0 }, 0);
+    tl.to(backPuzzle, { display: "none" }, 0);
 
     tl.to(object, {
         y: "10%",
@@ -212,5 +223,8 @@ function initGSAP() {
 
     tl.add(() => {
         object.src = "assets/flatline.gif";
+        // Plat flatline sound
+        flatlineSound.volume = 1;
+        flatlineSound.play();
     }, 0.3);
 }

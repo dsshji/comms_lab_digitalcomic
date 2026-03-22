@@ -14,39 +14,84 @@ body {
   text-align: center;
 }
 
-h1{
-    display: block;
+h1 {
+  display: block;
 }
 
 /* CENTER DROP BOX */
 .drop-zone {
-    position: absolute;
-    width: 15%;
-    height: 15vw;
-    border: 3px dashed white;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  width: 15%;
+  height: 15vw;
+  border: 3px dashed white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* PUZZLE PIECES */
 .piece {
-    position: absolute;
-    cursor: grab;
-    user-select: none;
-    transition: transform 0.2s;
+  position: absolute;
+  cursor: grab;
+  user-select: none;
+  transition: transform 0.2s;
 }
 
 .piece:active {
-    cursor: grabbing;
-    transform: scale(1.05);
+  cursor: grabbing;
+  transform: scale(1.05);
+}
+
+#back-button {
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+  color: rgba(225, 210, 175, 0.85);
+  animation: bounce-down 1.9s ease-in-out infinite;
+  font-size: clamp(9px, 1vw, 13px);
+  letter-spacing: 0.2em;
+}
+
+.back-button {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+  color: rgba(225, 210, 175, 0.85);
+  animation: bounce-down 1.9s ease-in-out infinite;
+  font-size: clamp(9px, 1vw, 13px);
+  letter-spacing: 0.2em;
+  z-index: 10;
+}
+
+#back-panel4 {
+  background: #1111;
+}
+
+#back-puzzle {
+  background: #cab9a1;
+  color: black;
+}
+
+@keyframes bounce-down {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(7px);
+  }
 }
 
 .hero {
   position: relative;
   height: 100vh;
   overflow: hidden;
-  display: none; /* hidden until puzzle complete */
+  display: none;
+  /* hidden until puzzle complete */
 }
 
 /* FINAL IMAGE */
@@ -55,7 +100,7 @@ h1{
   position: absolute;
   width: 100%;
   height: 100%;
-  object-fit: cover;   
+  object-fit: cover;
   top: 0;
   left: 0;
   z-index: 1;
@@ -63,33 +108,15 @@ h1{
 
 .object {
   position: absolute;
-  width: 500px;          
-  top: 30%;           
+  width: 500px;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
 }
-/* .final-image {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: url('assets/hospital-bed.png');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    z-index: 1;
-    opacity: 1;
-}
-.object {
-  position: absolute;
-  width: 30%;
-  top: 5%;
-  left: 35%;
-  z-index: 2;
-} */
 
 .white-section {
-    height: 50vh;
-    background: #111;
-    display: none;
+  height: 50vh;
+  background: #111;
+  display: none;
 }

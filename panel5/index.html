@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Drag Puzzle</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@100..900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<h1 id="title" class="grenze-gotisch">Complete the puzzle to reveal the truth</h1>
+  <h1 id="title" class="grenze-gotisch">Complete the puzzle to reveal the truth</h1>
+  <div class="drop-zone">
+  </div>
+  <!-- Bottom nav back to panel 4 -->
+  <button id="back-panel4" class="back-button">↓ Go back</button>
 
-<div class="drop-zone"></div>
 
-<section class="hero">
-  <!-- <div class="final-image"></div> -->
-  <img src="../panel5/assets/hospital-bed.png" class="final-image">
-  <img src="../panel5/assets/heartbeat.gif" class="object" id="monitor">
-</section>
+  <section class="hero">
+    <!-- <div class="final-image"></div> -->
+    <img src="../panel5/assets/hospital-bed.png" class="final-image">
+    <img src="../panel5/assets/heartbeat.gif" class="object" id="monitor">
+    <!-- Bottom nav back to puzzle -->
+    <button id="back-puzzle" class="back-button">↓ Go back</button>
+  </section>
 
-<div class="white-section">
+  <div class="white-section">
     <h1 data-aos="fade-up" class="grenze-gotisch">At the end I had to go...</h1>
-</div>
+  </div>
 
-<!-- GSAP library -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script src="../panel5/script.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"></script>
+  <!-- GSAP library -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="../panel5/script.js"></script>
 
 </body>
+
 </html>
