@@ -4,11 +4,12 @@ AOS.init({ duration: 600, easing: "ease", once: false, offset: 0 });
 const dropZone = document.querySelector(".drop-zone");
 const finalImage = document.querySelector(".final-image");
 const heroSection = document.querySelector(".hero");
-const whiteSection = document.querySelector(".white-section");
+const endSection = document.querySelector(".end-section");
 const backPanel4 = document.getElementById("back-panel4");
 const backPuzzle = document.getElementById("back-puzzle");
 let heartbeatSound = new Audio("assets/heartbeat-sound.mov");
 let flatlineSound = new Audio("assets/flatline-sound.mov");
+let flatlinePlayed = false;
 
 backPanel4.addEventListener("click", () => {
     window.location.href = "../panel4/index.html";
@@ -188,7 +189,7 @@ function completePuzzle() {
     setTimeout(() => {
 
         heroSection.style.display = "block";
-        whiteSection.style.display = "block";
+        endSection.style.display = "block";
 
         // a frame before initializing GSAP
         requestAnimationFrame(() => {
@@ -224,7 +225,9 @@ function initGSAP() {
     tl.add(() => {
         object.src = "assets/flatline.gif";
         // Plat flatline sound
-        flatlineSound.volume = 1;
-        flatlineSound.play();
+        if (!flatlinePlayed) {
+            flatlineSound.play();
+            flatlinePlayed = true;
+        }
     }, 0.3);
 }

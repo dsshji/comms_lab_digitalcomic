@@ -14,8 +14,17 @@ body {
   text-align: center;
 }
 
-h1 {
-  display: block;
+#textbox-outer {
+  display: flex;
+  justify-content: center;
+}
+
+.textbox {
+  padding: 10px;
+  border: white 2px solid;
+  font-size: medium;
+  font-weight: 100;
+  width: 50%;
 }
 
 /* CENTER DROP BOX */
@@ -115,8 +124,9 @@ h1 {
   z-index: 2;
 }
 
-.white-section {
-  height: 50vh;
+.end-section {
+  height: 65vh;
   background: #111;
   display: none;
+  padding-top: 32vh;
 }
