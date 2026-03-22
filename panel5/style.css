@@ -74,12 +74,40 @@ body {
   z-index: 10;
 }
 
+.back-hint {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 9%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.back-arrow {
+  font-size: 1.5rem;
+  animation: bounce-down 1.9s ease-in-out infinite;
+}
+
+.back-text {
+  font-size: clamp(9px, 1vw, 13px);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
 #back-panel4 {
   background: #1111;
+  color: rgba(225, 210, 175, 0.85);
 }
 
 #back-puzzle {
-  background: #cab9a1;
+  /* background: rgb(202, 185, 161); */
+  background: rgba(202, 185, 161, 0.2);
   color: black;
 }
 
