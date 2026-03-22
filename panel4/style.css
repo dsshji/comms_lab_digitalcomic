@@ -39,24 +39,79 @@
     pointer-events: auto; /* only triggers pointer on drawn svg */
 }
 
-/* .boxImage {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    pointer-events: visiblePainted; /* ignores empty spaces on svg, transparent bg is ignored 
-} */
-
 #boxInteraction svg:hover {
     transition: all 0.3s ease-in-out;
     opacity: 1; /* appears when user hovers */
 }
 
-/* #boxInteraction svg, #boxInteraction img {
+/* ALL CSS CODE BELOW IS TAKEN FROM PANELS 1&2 WITH SLIGHT CHANGES */
+
+/* ============================================================
+   BACK NAVIGATION
+   ============================================================ */
+.back-hint {
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    height: 100%;
-    object-fit: contain;
+    height: 9%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    cursor: pointer;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.6));
+    transition: background 0.25s;
+    z-index: 2;
+}
+
+.back-hint:hover {
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+}
+
+.back-arrow {
+    font-size: 1.5rem;
+    color: rgba(225, 210, 175, 0.85);
+    animation: bounce-down 1.9s ease-in-out infinite;
+    margin-bottom: 0.2rem;
+}
+
+.back-text {
+    font-size: clamp(9px, 1vw, 13px);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(225, 210, 175, 0.6);
+    margin-bottom: 0.45rem;
+}
+
+@keyframes bounce-down {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(7px);
+    }
+}
+
+/* ============================================================
+   FADE TRANSITION OVERLAY
+   ============================================================ */
+.fade-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: #080a0e;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.45s ease;
+}
+
+.fade-overlay.active {
+    opacity: 1;
     pointer-events: all;
-} */
-
-
+}
 
