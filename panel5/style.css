@@ -132,7 +132,6 @@ body {
 }
 
 /* FINAL IMAGE */
-
 .final-image {
   position: absolute;
   width: 100%;
@@ -143,6 +142,7 @@ body {
   z-index: 1;
 }
 
+/* Heart monitor */
 .object {
   position: absolute;
   width: 500px;
@@ -152,9 +152,28 @@ body {
   z-index: 2;
 }
 
+/* End panel text */
 .end-section {
   height: 65vh;
   background: #111;
   display: none;
   padding-top: 32vh;
+}
+
+/* ============================================================
+   FADE TRANSITION OVERLAY
+   ============================================================ */
+.fade-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: #080a0e;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s ease;
+}
+
+.fade-overlay.active {
+  opacity: 1;
+  pointer-events: all;
 }

@@ -7,16 +7,23 @@ const heroSection = document.querySelector(".hero");
 const endSection = document.querySelector(".end-section");
 const backPanel4 = document.getElementById("back-panel4");
 const backPuzzle = document.getElementById("back-puzzle");
+let fadeOverlay = document.getElementById("fade-overlay");
 let heartbeatSound = new Audio("assets/heartbeat-sound.mov");
 let flatlineSound = new Audio("assets/flatline-sound.mov");
 let flatlinePlayed = false;
 
 backPanel4.addEventListener("click", () => {
-    window.location.href = "../panel4/index.html";
+    fadeOverlay.classList.add("active"); // start fade
+    setTimeout(() => {
+        window.location.href = "../panel4/index.html";
+    }, 500);
 });
 
 backPuzzle.addEventListener("click", () => {
-    window.location.href = "../panel5/index.html";
+    fadeOverlay.classList.add("active"); // start fade
+    setTimeout(() => {
+        window.location.href = "../panel5/index.html";
+    }, 500);
 });
 
 const images = [

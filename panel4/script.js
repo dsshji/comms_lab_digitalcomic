@@ -7,7 +7,7 @@ let isAnimating = false; //same logic as panel 1&2 fade from switching panels
 
 //triggers functions when user clicks the box
 function nextPanel(){
-    window.location.href = "../panel5/index.html" //LINK PANEL 5 HERE
+    window.location.href = "../panel5/index.html"
 }
 
 function boxClicked(){ //this function plays a box openeing sound, and fades to the next panel
