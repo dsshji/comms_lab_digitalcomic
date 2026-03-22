@@ -53,6 +53,9 @@ scroller.addEventListener('scroll', () => {
     });
   }, 300);
 
+  if (progress > 0.1) {
+    document.getElementById('stair-caption').classList.add('visible');
+  }
   if (progress > 0.9 && !doorVisible) showDoor();
 });
 
