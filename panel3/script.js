@@ -187,6 +187,6 @@ function unlock() {
   document.getElementById('fade-out').classList.add('active');
 
   setTimeout(() => {
-    window.top.location.href = 'panel4/index.html'; //ADD PANEL 4 HERE
+    window.top.location.href = './panel4/index.html'; //ADD PANEL 4 HERE
   }, 800);
 }
