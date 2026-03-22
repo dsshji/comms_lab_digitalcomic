@@ -245,14 +245,8 @@ to3Hotspot.addEventListener("click", () => {
   to3Wrapper.classList.add("open");
 
   setTimeout(() => {
-    const box = document.getElementById("modal-box");
-    box.classList.add("panel3-iframe");
-    modalContent.innerHTML = `<iframe 
-  src="panel3/index.html" 
-  style="width:92vw;height:90vh;border:none;display:block;"
-></iframe>`;
-    modal.classList.add("open");
-  }, 650);
+    window.location.href = "panel3/index.html";
+  });
 });
 
 /* DUST SCRUB */
