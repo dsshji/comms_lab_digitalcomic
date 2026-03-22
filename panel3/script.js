@@ -179,6 +179,10 @@ function clearInputs() {
   inputs.forEach(i => i.value = '');
 }
 
+// BACK BUTTON
+document.getElementById('back-hint').addEventListener('click', () => {
+  window.location.href = 'index.html';
+});
 
 // UNLOCK → FADE
 function unlock() {
