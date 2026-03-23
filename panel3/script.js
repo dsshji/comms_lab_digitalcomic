@@ -181,7 +181,8 @@ function clearInputs() {
 
 // BACK BUTTON
 document.getElementById('back-hint').addEventListener('click', () => {
-  window.location.href = '../index.html#panel2';
+  localStorage.setItem('startAtPanel', '2');
+  window.location.href = '../index.html';
 });
 
 // UNLOCK → FADE
