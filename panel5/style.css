@@ -14,17 +14,37 @@ body {
   text-align: center;
 }
 
-#textbox-outer {
+#dialogue-puzzle {
   display: flex;
   justify-content: center;
+  padding-top: 16px;
+}
+
+#dialogue-hospital {
+  display: flex;
+  justify-content: end;
+  padding-top: 16px;
+  padding-right: 16px;
 }
 
 .textbox {
-  padding: 10px;
-  border: white 2px solid;
-  font-size: medium;
-  font-weight: 100;
-  width: 50%;
+  /* positioning */
+  width: 31%;
+  /* text style */
+  background-color: rgba(20, 20, 25, 0.902);
+  color: #d1d1d1;
+  padding: 18px;
+  border: 1px solid #5d606754;
+
+  /* font */
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.5rem;
+  line-height: 1.4;
+  text-transform: uppercase;
+
+  z-index: 10;
+
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
 }
 
 /* CENTER DROP BOX */
@@ -107,7 +127,7 @@ body {
 
 #back-puzzle {
   /* background: rgb(202, 185, 161); */
-  background: rgba(202, 185, 161, 0.2);
+  /* background: rgba(202, 185, 161, 0.2); */
   color: black;
 }
 
@@ -158,6 +178,12 @@ body {
   background: #111;
   display: none;
   padding-top: 32vh;
+}
+
+#end-dialogue {
+  display: flex;
+  justify-content: center;
+  padding-top: 16px;
 }
 
 /* ============================================================

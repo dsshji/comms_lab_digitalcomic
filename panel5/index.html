@@ -11,9 +11,10 @@
   <div id="fade-overlay" class="fade-overlay"></div>
 
   <!-- Heading dialog box -->
-  <div id="textbox-outer">
-    <h1 id="title" class="textbox">A puzzle…? Maybe piecing this together might reveal something</h1>
+  <div id="dialogue-puzzle">
+    <div class="textbox">A puzzle…? Maybe piecing this together might reveal something</div>
   </div>
+
 
   <!-- puzzle piece drop zone -->
   <div class="drop-zone">
@@ -25,10 +26,15 @@
     <span class="back-text">Go back</span>
   </div>
 
-   <!-- Image reveal -->
+  <!-- Image reveal -->
   <section class="hero">
     <img src="../panel5/assets/hospital-bed.png" class="final-image">
     <img src="../panel5/assets/heartbeat.gif" class="object" id="monitor">
+
+    <div id="dialogue-hospital">
+      <div class="textbox">I couldn't make it</div>
+    </div>
+
     <!-- Bottom nav back to puzzle -->
     <div id="back-puzzle" class="back-hint">
       <span class="back-arrow">↓</span>
@@ -36,9 +42,11 @@
     </div>
   </section>
 
-   <!-- End Panel -->
+  <!-- End Panel -->
   <div class="end-section">
-    <h1 data-aos="fade-up">No-one lives in this house anymore...</h1>
+    <div id="end-dialogue">
+      <div data-aos="fade-up" class="textbox">No-one lives in this house anymore...</div>
+    </div>
   </div>
 
 

@@ -182,7 +182,7 @@ function checkSnap(piece, clickX, clickY) {
 
 function completePuzzle() {
 
-    const title = document.getElementById("title");
+    const dialoguePuzzle = document.getElementById("dialogue-puzzle");
 
     document.querySelectorAll(".piece").forEach(p => {
         p.style.opacity = "0";
@@ -190,7 +190,7 @@ function completePuzzle() {
     });
 
     dropZone.style.opacity = "0";
-    title.style.display = "none";
+    dialoguePuzzle.style.display = "none";
     backPanel4.style.display = "none";
 
     setTimeout(() => {
@@ -210,6 +210,7 @@ function completePuzzle() {
 function initGSAP() {
     const object = document.getElementById("monitor");
     const background = document.querySelector(".final-image");
+    const dialogHospital = document.getElementById("dialogue-hospital");
 
     const tl = gsap.timeline({
         scrollTrigger: {
@@ -222,7 +223,8 @@ function initGSAP() {
     });
 
     tl.to(background, { opacity: 0 }, 0);
-    tl.to(backPuzzle, { display: "none" }, 0);
+    tl.to(backPuzzle, { display: "none" }, 0.3);
+    tl.to(dialogHospital, { display: "none" }, 0);
 
     tl.to(object, {
         y: "10%",
