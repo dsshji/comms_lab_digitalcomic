@@ -38,6 +38,13 @@ const devOutput     = document.getElementById("dev-output");
 let isAnimating = false;
 let doorUsed    = false;
 
+// Return to panel 2 when coming back from panel 3
+if (localStorage.getItem('startAtPanel') === '2') {
+  localStorage.removeItem('startAtPanel');
+  panel1.classList.remove('active');
+  panel2.classList.add('active');
+}
+
 /* HOTSPOT POSITIONING
    panel-bg uses object-fit:contain so the rendered image may have
    letterbox bars. Compute the actual image rect and place
