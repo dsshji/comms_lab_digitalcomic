@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.removeItem('startAtPanel');
     panel1.classList.remove('active');
     panel2.classList.add('active');
+    document.documentElement.style.visibility = '';
   }
 });
 
