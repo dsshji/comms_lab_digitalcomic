@@ -8,7 +8,7 @@
 body {
   margin: 0;
   background: #111;
-  font-family: sans-serif;
+  font-family: Georgia, serif;
   overflow-x: hidden;
   color: white;
   text-align: center;
@@ -38,7 +38,7 @@ body {
 
   /* font */
   font-family: 'Courier New', Courier, monospace;
-  font-size: 0.5rem;
+  font-size: 0.8rem;
   line-height: 1.4;
   text-transform: uppercase;
 
