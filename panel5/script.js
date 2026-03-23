@@ -203,6 +203,7 @@ function completePuzzle() {
             initGSAP();
             ScrollTrigger.refresh();
         });
+        heartbeatSound.volume = 0.2;
         heartbeatSound.play();
     }, 700);
 }
@@ -235,6 +236,7 @@ function initGSAP() {
         object.src = "assets/flatline.gif";
         // Plat flatline sound
         if (!flatlinePlayed) {
+            flatlineSound.volume = 0.1
             flatlineSound.play();
             flatlinePlayed = true;
         }
