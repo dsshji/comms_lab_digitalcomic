@@ -1,6 +1,4 @@
-/* ============================================================
-   BASE
-   ============================================================ */
+/* BASE */
 *,
 *::before,
 *::after {
@@ -19,9 +17,7 @@ body {
     user-select: none;
 }
 
-/* ============================================================
-   PANELS — contain so nothing is cropped
-   ============================================================ */
+/* PANELS — contain so nothing is cropped */
 .panel {
     position: absolute;
     inset: 0;
@@ -69,10 +65,10 @@ body {
     z-index: 2;
 }
 
-/* ============================================================
+/* 
    HOTSPOTS — positioned relative to the RENDERED image area.
    JS will compute the image rect and apply px positions.
-   ============================================================ */
+    */
 .hotspot {
     position: absolute;
     cursor: pointer;
@@ -107,9 +103,9 @@ body {
     transition: transform 0.2s ease;
 }
 
-/* ============================================================
+/* 
    PANEL 1 — DOOR
-   ============================================================ */
+    */
 .door-hotspot {
     /* px positions set by JS after image renders */
     perspective: 1200px;
@@ -177,9 +173,9 @@ body {
     animation: none;
 }
 
-/* ============================================================
+/* 
    SCROLL-TO-ENTER HINT
-   ============================================================ */
+    */
 .enter-hint {
     position: absolute;
     bottom: 60px;
@@ -225,9 +221,9 @@ body {
     }
 }
 
-/* ============================================================
+/* 
    PANEL 2 — BACK NAVIGATION
-   ============================================================ */
+    */
 .back-hint {
     position: absolute;
     bottom: 0;
@@ -274,9 +270,9 @@ body {
     }
 }
 
-/* ============================================================
+/* 
    DEV CONTROLS (panel 2 hotspot positioning)
-   ============================================================ */
+    */
 .dev-controls {
     position: fixed;
     top: 12px;
@@ -350,9 +346,9 @@ body {
     line-height: 1.7;
 }
 
-/* ============================================================
+/* 
    MODAL
-   ============================================================ */
+    */
 .modal {
     position: fixed;
     inset: 0;
@@ -436,9 +432,9 @@ body {
     box-shadow: 0 20px 80px rgba(0, 0, 0, 0.75);
 }
 
-/* ============================================================
+/* 
    DUST MODAL
-   ============================================================ */
+    */
 .dust-box {
     flex-direction: column;
     gap: 10px;
@@ -501,9 +497,9 @@ body {
     }
 }
 
-/* ============================================================
+/* 
    ZOOM OVERLAY — for zoom-into-doorway transition
-   ============================================================ */
+    */
 .zoom-overlay {
     position: fixed;
     inset: 0;
@@ -519,9 +515,9 @@ body {
     pointer-events: all;
 }
 
-/* ============================================================
+/* 
    FADE TRANSITION OVERLAY
-   ============================================================ */
+    */
 .fade-overlay {
     position: fixed;
     inset: 0;

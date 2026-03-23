@@ -1,5 +1,3 @@
-/* script.js — AOS + Rellax only, vanilla CSS transitions */
-
 AOS.init({ duration: 600, easing: "ease", once: false, offset: 0 });
 
 /* DOM refs */
