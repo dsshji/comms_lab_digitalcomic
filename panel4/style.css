@@ -60,7 +60,7 @@
 
     /* font */
     font-family: 'Courier New', Courier, monospace;
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     line-height: 1.4;
     text-transform: uppercase;
 
@@ -81,9 +81,9 @@
     padding: 15px;
     border: 1px solid #5d606754;
 
-    /* font */
+    /* font */ 
     font-family: 'Courier New', Courier, monospace;
-    font-size: 1rem;
+    font-size: 0.8rem;
     line-height: 1.4;
     text-transform: uppercase;
 
