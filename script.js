@@ -175,7 +175,7 @@ doorHotspot.addEventListener("click", () => {
 });
 
 function onScrollEnter(e) {
-  if (e.deltaY > 0) triggerZoomEnter();
+  if (e.deltaY > 0 && panel1.classList.contains('active')) triggerZoomEnter();
 }
 
 let touchStartY = 0;
@@ -221,7 +221,9 @@ function triggerZoomEnter() {
 }
 
 /* BACK NAVIGATION */
-backHint.addEventListener("click", () => switchPanel(1));
+backHint.addEventListener("click", () => {
+  if (panel2.classList.contains('active')) switchPanel(1);
+});
 
 /* We use back button and not scroll
 /* Scroll up on panel 2 goes back to panel 1
