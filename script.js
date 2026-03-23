@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.removeItem('startAtPanel');
     panel1.classList.remove('active');
     panel2.classList.add('active');
+    layoutAll();
   }
   document.documentElement.style.visibility = '';
   });
@@ -218,10 +219,11 @@ function triggerZoomEnter() {
 /* BACK NAVIGATION */
 backHint.addEventListener("click", () => switchPanel(1));
 
-/* Scroll up on panel 2 goes back to panel 1 */
+/* We use back button and not scroll
+/* Scroll up on panel 2 goes back to panel 1
 panel2.addEventListener("wheel", (e) => {
   if (e.deltaY < 0) switchPanel(1);
-}, { passive: true });
+}, { passive: true }); */
 
 /* MODALS */
 function openModal(src) {
