@@ -14,6 +14,26 @@ function resize() {
 resize();
 window.addEventListener('resize', resize);
 
+// flickers
+function flicker() {
+  const canvas = document.getElementById('stair-canvas');
+  const flickerSound = new Audio('audios/flicker.mp3');
+  flickerSound.volume = 0.6;
+  flickerSound.play().catch(() => {});
+  
+  let times = 0;
+  const interval = setInterval(() => {
+    canvas.style.opacity = canvas.style.opacity === '0.15' ? '1' : '0.15';
+    times++;
+    if (times >= 4) {
+      clearInterval(interval);
+      canvas.style.opacity = '1';
+    }
+  }, 120);
+}
+
+window.addEventListener('load', flicker);
+
 
 // AUDIO
 const stairsSound = new Audio('audios/stairs.mp3');
@@ -85,7 +105,7 @@ function draw() {
     const w     = canvas.width;
     const h     = w * ratio;
 
-    const yStart = canvas.height * 0.3;
+    const yStart = canvas.height * 0.1;
     const yEnd   = canvas.height - h;
     const y      = yStart + (yEnd - yStart) * progress;
 
