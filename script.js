@@ -44,10 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.removeItem('startAtPanel');
     panel1.classList.remove('active');
     panel2.classList.add('active');
-    layoutAll();
+    if (panelBg2.complete) {
+      layoutPanel2();
+    } else {
+      panelBg2.addEventListener('load', layoutPanel2);
+    }
   }
   document.documentElement.style.visibility = '';
-  });
+});
 
 /* HOTSPOT POSITIONING
    panel-bg uses object-fit:contain so the rendered image may have
