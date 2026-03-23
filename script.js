@@ -44,9 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.removeItem('startAtPanel');
     panel1.classList.remove('active');
     panel2.classList.add('active');
-  document.documentElement.style.visibility = '';
   }
-});
+  document.documentElement.style.visibility = '';
+  });
 
 /* HOTSPOT POSITIONING
    panel-bg uses object-fit:contain so the rendered image may have
