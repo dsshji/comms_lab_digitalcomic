@@ -268,7 +268,7 @@ to3Hotspot.addEventListener("click", () => {
 /* DUST SCRUB */
 let dustReady   = false;
 let dustCleared = false;
-const THRESHOLD = 0.30;
+const THRESHOLD = 0.40;
 
 const DUSTER_CURSOR = "url('assets/cursor/duster.png') 36 36, crosshair";
 
