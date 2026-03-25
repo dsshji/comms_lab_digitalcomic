@@ -551,16 +551,19 @@ body {
 }
 
 .caption-entry {
-    top: 8%;
-    left: 3%;
+    top: 10%;
+    left: 22%;
+    width: 25%;
 }
 
 .caption-portrait {
-    top: 55%;
-    left: 3%;
+    bottom: 25%;
+    left: 22%;
+    width: 20%;
 }
 
 .caption-note {
-    top: 28%;
-    right: 2%;
+    top: 35%;
+    right: 6%;
+    width: 12%;
 }
