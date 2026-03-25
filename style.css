@@ -532,3 +532,35 @@ body {
     opacity: 1;
     pointer-events: all;
 }
+
+
+.caption {
+    position: absolute;
+    background-color: rgba(20, 20, 25, 0.9);
+    color: #d1d1d1;
+    padding: 15px 18px;
+    border: 1px solid rgba(93, 96, 103, 0.33);
+    font-family: "Courier New", Courier, monospace;
+    font-size: clamp(0.6rem, 0.85vw, 0.8rem);
+    line-height: 1.5;
+    text-transform: uppercase;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+    pointer-events: none;
+    z-index: 3;
+    max-width: 22%;
+}
+
+.caption-entry {
+    top: 8%;
+    left: 3%;
+}
+
+.caption-portrait {
+    top: 55%;
+    left: 3%;
+}
+
+.caption-note {
+    top: 28%;
+    right: 2%;
+}
